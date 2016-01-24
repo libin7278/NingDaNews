@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="false" android:drawable="@mipmap/night_biz_navigation_tab_news"/>
+    <item android:state_checked="true" android:drawable="@mipmap/night_biz_navigation_tab_news_selected"/>
+
+</selector>
