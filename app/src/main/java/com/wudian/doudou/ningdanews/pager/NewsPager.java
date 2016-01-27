@@ -82,50 +82,7 @@ public class NewsPager extends BasePager {
         //TabPagerIndicator和ViewPager关联
         tab_page_indicator.setViewPager(viewpager_news_menu_detail);
 
-        //设置滑动的点击监听,得到当前position
-        tab_page_indicator.setOnPageChangeListener(new TabViewOnPageChangeListener());
-
     }
-
-    class TabViewOnPageChangeListener implements ViewPager.OnPageChangeListener {
-
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-        }
-
-        @Override
-        public void onPageSelected(int position) {
-//            if (position==0) {
-//                setPagerNumber(0);
-//                CacheUtils.putInt(mActivity,"pagerNumber",0);
-//                Log.w("TabDetailPager","0");
-//            }else if(position==1){
-//                setPagerNumber(1);
-//                Log.w("TabDetailPager","1");
-//                CacheUtils.putInt(mActivity,"pagerNumber",1);
-//            }else if(position==2){
-//                setPagerNumber(2);
-//                Log.w("TabDetailPager","2");
-//                CacheUtils.putInt(mActivity,"pagerNumber",2);
-//            }else if(position==3){
-//                setPagerNumber(3);
-//                Log.w("TabDetailPager","3");
-//                CacheUtils.putInt(mActivity,"pagerNumber",3);
-//            }else if(position==4){
-//                setPagerNumber(4);
-//                Log.w("TabDetailPager","4");
-//                CacheUtils.putInt(mActivity,"pagerNumber",4);
-//            }
-
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int state) {
-
-        }
-    }
-
 
     class NewsMenuDetailPagerAdapter extends PagerAdapter {
         @Override
