@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="180dp">
 
-    <com.wudian.doudou.nindanews.view.HorizontalViewPager
+    <android.support.v4.view.ViewPager
         android:id="@+id/viewpager_tabdetail_pager"
         android:layout_width="match_parent"
         android:layout_height="180dp" />

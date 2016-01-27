@@ -17,12 +17,16 @@ public class ConstantUtils {
     public static final String benTuUrl = "http://fabu.ycen.com.cn/api/posts.ashx?action=list&per=20&page=1&category=674";
     //县区
     public static final String xianQuUrl = "http://fabu.ycen.com.cn/api/posts.ashx?action=list&per=20&page=1&category=2124";
+    //直播
+    public static final String zhiBoUrl = "http://fabu.ycen.com.cn/api/posts.ashx?action=list&per=20&page=1&category=2114";
     //时尚
     public static final String shiShangUrl = "http://fabu.ycen.com.cn/api/posts.ashx?action=list&per=20&page=1&category=720";
+    //视频
+    public static final String shiPingUrl = "http://fabu.ycen.com.cn/api/posts.ashx?action=list&per=20&page=1&category=2118";
     //时事
     public static final String shiSHIUrl = "http://fabu.ycen.com.cn/api/posts.ashx?action=list&per=20&page=1&category=675";
     //图集
     public static final String tuJIUrl = "http://fabu.ycen.com.cn/api/posts.ashx?action=list&per=20&page=1&category=677";
 
-    public static final String[] newsUrl={benTuUrl,xianQuUrl,shiShangUrl,shiSHIUrl,tuJIUrl};
+    public static final String[] newsUrl={benTuUrl,xianQuUrl,zhiBoUrl,shiShangUrl,shiPingUrl,shiSHIUrl,tuJIUrl};
 }

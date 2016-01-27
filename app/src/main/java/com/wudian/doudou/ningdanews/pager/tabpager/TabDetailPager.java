@@ -92,16 +92,20 @@ public class TabDetailPager extends BasePager {
 
         View view = View.inflate(mActivity, R.layout.tabdetail_pager, null);
         x.view().inject(this, view);
+
+        View topView = View.inflate(mActivity, R.layout.tabledetail_imager_pager, null);
+        x.view().inject(this, topView);
+
+        listview_tabdetail_pager.addHeaderView(topView);
+
         return view;
     }
 
     @Override
     public void initData() {
         super.initData();
-        // NewsPager.getPagerNumber()页签页面数
-        //CacheUtils.getInt(mActivity,"pagerNumber");
+
         Log.e("TabDetailPager", "initData 被调用了");
-        //int data = CacheUtils.getInt(mActivity,"pagerNumber");
         Log.e("TabDetailPager", url);
 
         String json = CacheUtils.getString(mActivity, url);
@@ -155,7 +159,7 @@ public class TabDetailPager extends BasePager {
         //把所有点移除
         ll_poing_goup.removeAllViews();
         //设置红点
-        for (int i = 0; i < news.size(); i++) {
+        for (int i = 0; i < 3; i++) {
 
             ImageView point = new ImageView(mActivity);
             //设置背景
@@ -268,7 +272,7 @@ public class TabDetailPager extends BasePager {
 
         @Override
         public int getCount() {
-            return news.size();
+            return 3;
         }
 
         @Override

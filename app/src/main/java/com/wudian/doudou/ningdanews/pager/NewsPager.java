@@ -23,7 +23,7 @@ import java.util.ArrayList;
  * Created by doudou on 16/1/13.
  */
 public class NewsPager extends BasePager {
-    private static final String[] TABTITLE = new String[]{"本土", "县区", "爱尚", "时事", "图集"};
+    private static final String[] TABTITLE = new String[]{"本土", "县区","直播","爱尚","视频","时事", "图集"};
 
     /**
      * 页签页面页数
@@ -71,7 +71,7 @@ public class NewsPager extends BasePager {
 
         for (int i = 0; i < TABTITLE.length; i++) {
 
-            TabDetailPager tabDetailPager = new TabDetailPager(mActivity, ConstantUtils.newsUrl[0]);
+            TabDetailPager tabDetailPager = new TabDetailPager(mActivity, ConstantUtils.newsUrl[i]);
 
             newsPagers.add(tabDetailPager);
         }
