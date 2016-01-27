@@ -3,20 +3,16 @@ package com.wudian.doudou.ningdanews.base;
 import android.app.Activity;
 import android.view.View;
 
-
 /**
- * Created by doudou on 16/1/13.
+ * 页签页面基类
+ * Created by doudou on 16/1/26.
  */
-/**
- * 各个页面的基类
- * Created by Jian Chang on 2016-01-11.
- */
-public abstract class BasePager {
+public abstract class TabDetailBasePager {
 
     public View mRootView;
     public Activity mActivity;
 
-    public BasePager(Activity activity) {
+    public TabDetailBasePager(Activity activity) {
         this.mActivity = activity;
         mRootView = getView();
     }

@@ -17,6 +17,7 @@
     </style><dimen name="default_circle_indicator_stroke_width">1dp</dimen><color name="vpi__bright_foreground_holo_light">@color/vpi__background_holo_dark</color><bool name="default_circle_indicator_centered">true</bool><dimen name="default_title_indicator_footer_indicator_underline_padding">20dp</dimen><style name="Theme.PageIndicatorDefaults" parent="android:Theme">
         <item name="vpiIconPageIndicatorStyle">@style/Widget.IconPageIndicator</item>
         <item name="vpiTabPageIndicatorStyle">@style/Widget.TabPageIndicator</item>
+
     </style><attr format="color" name="selectedColor"/><dimen name="default_line_indicator_gap_width">4dp</dimen><color name="default_line_indicator_selected_color">#FF33B5E5</color><dimen name="default_line_indicator_line_width">12dp</dimen><dimen name="default_title_indicator_clip_padding">4dp</dimen><dimen name="default_title_indicator_footer_line_height">2dp</dimen><integer name="default_title_indicator_line_position">0</integer><bool name="default_title_indicator_selected_bold">true</bool><style name="Widget.IconPageIndicator" parent="Widget">
         <item name="android:layout_marginLeft">6dp</item>
         <item name="android:layout_marginRight">6dp</item>

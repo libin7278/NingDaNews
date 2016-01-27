@@ -26,4 +26,6 @@
         <item name="android:gravity">center</item>
         <item name="android:textColor">@drawable/rb_textcolor_selector</item>
     </style>
+
+
 </resources>

@@ -9,7 +9,7 @@
     tools:context="com.wudian.doudou.ningdanews.MainActivity">
 
     <android.support.design.widget.AppBarLayout
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_width="match_parent"
         android:theme="@style/AppTheme.AppBarOverlay">
 
@@ -26,13 +26,15 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="50dp"
+        >
 
         <FrameLayout
             android:id="@+id/main_content"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.79"
             android:background="#f0f0f0"/>
 
         <RadioGroup

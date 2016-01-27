@@ -50,4 +50,27 @@ public class CacheUtils {
         SharedPreferences sp = context.getSharedPreferences("wudianxinwen", Context.MODE_PRIVATE);
         return sp.getString(key,"");
     }
+
+    /**
+     * 保存软件int缓存数据
+     * @param context
+     * @param key
+     * @param value
+     */
+    public static void putInt(Context context,String key , int value) {
+        SharedPreferences sp = context.getSharedPreferences("wudianxinwen", Context.MODE_PRIVATE);
+        sp.edit().putInt(key, value).commit();
+    }
+
+    /**
+     * 得到软件int缓存数据
+     * @param context
+     * @param key
+     * @return
+     */
+    public static int getInt(Context context,String key) {
+        SharedPreferences sp = context.getSharedPreferences("wudianxinwen", Context.MODE_PRIVATE);
+        return sp.getInt(key,0);
+    }
+
 }

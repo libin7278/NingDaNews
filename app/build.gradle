@@ -26,4 +26,6 @@ dependencies {
     compile 'com.android.support:design:22.2.1'
     compile project(':xutils_library')
     compile project(':ViewPagerIndicator_library')
+    compile files('libs/gson-2.2.1.jar')
+    compile files('libs/volley.jar')
 }

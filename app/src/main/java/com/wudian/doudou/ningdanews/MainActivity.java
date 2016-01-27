@@ -27,6 +27,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
+
     private RadioGroup mRadioGroup;
 
     private int mPosition;
@@ -76,6 +78,7 @@ public class MainActivity extends AppCompatActivity
         mRadioGroup.setOnCheckedChangeListener(new MyOnCheckedChangeListener());
         mRadioGroup.check(R.id.rb_news); // 默认选中主页
     }
+
 
     /**
      * 设置 Fragment 到布局中
