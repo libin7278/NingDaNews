@@ -1,17 +1,22 @@
 package com.wudian.doudou.ningdanews.pager.tabpager;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -39,6 +44,7 @@ import java.util.List;
  * Created by doudou on 16/1/26.
  */
 public class TabDetailPager extends BasePager {
+    public static final String READ_ARRAY_ID = "read_array_id";
     /**
      * 页签详情网络请求链接
      */
@@ -56,7 +62,13 @@ public class TabDetailPager extends BasePager {
     @ViewInject(R.id.listview_tabdetail_pager)
     private ListView listview_tabdetail_pager;
 
+    @ViewInject(R.id.swipe_container)
+    private SwipeRefreshLayout swipe_container;
+
     private ImageOptions imageOptions;
+
+    //listview适配器
+    private  NewsListAdapter newsListAdapter;
 
     /**
      * 红点上一次高亮显示的位置
@@ -98,6 +110,43 @@ public class TabDetailPager extends BasePager {
 
         listview_tabdetail_pager.addHeaderView(topView);
 
+        swipe_container.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
+        swipe_container.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipe_container.setRefreshing(true);
+                Log.d("Swipe", "Refreshing Number");
+                (new Handler()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipe_container.setRefreshing(false);
+                        getDataFromNet();
+                        newsListAdapter.notifyDataSetChanged();
+                        //listview_tabdetail_pager.deferNotifyDataSetChanged();
+                        Toast.makeText(mActivity, "亲...刷新成功 >.< 喽!!!", Toast.LENGTH_SHORT).show();
+                    }
+                }, 3000);
+            }
+        });
+
+        //点击某一天监听item
+        listview_tabdetail_pager.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int realPosition = position-1;
+                NewDetailsBean.DataEntity newsItem = news.get(realPosition);
+                Log.d("TAG","newsItem.getID()"+newsItem.getID()+"newsItem.getPost_title()"+newsItem.getPost_title());
+                String saveIds = CacheUtils.getString(mActivity, READ_ARRAY_ID);
+                //首先读取ID是否被保存,如果没被保存,才去保存,并发送消息;
+                if(!saveIds.contains(newsItem.getID()+"")){
+                    //保存
+                    String values = saveIds+newsItem.getID()+",";
+                    CacheUtils.putString(mActivity,READ_ARRAY_ID,values);
+
+                    newsListAdapter.notifyDataSetChanged();//getCount() --> getView()
+                }
+            }
+        });
         return view;
     }
 
@@ -190,7 +239,8 @@ public class TabDetailPager extends BasePager {
         //1.得到数据
         news = detailPagerBean.getData();
         //2.设置适配器,写item布局
-        listview_tabdetail_pager.setAdapter(new NewsListAdapter());
+        newsListAdapter = new NewsListAdapter();
+        listview_tabdetail_pager.setAdapter(newsListAdapter);
     }
 
     class NewsListAdapter extends BaseAdapter {
@@ -228,6 +278,15 @@ public class TabDetailPager extends BasePager {
 
             viewHolder.tv_title_tabdetal.setText(newsItem.getPost_title());
             viewHolder.tv_time_tabdetal.setText(newsItem.getPost_date());
+
+            String saveIds = CacheUtils.getString(mActivity, READ_ARRAY_ID);
+            if(saveIds.contains(newsItem.getID()+"")){
+                //灰色
+                viewHolder.tv_title_tabdetal.setTextColor(Color.GRAY);
+            }else{
+                //黑色
+                viewHolder.tv_title_tabdetal.setTextColor(Color.BLACK);
+            }
 
             x.image().bind(viewHolder.iv_icon_table_detail, newsItem.getItem_small_pic(), imageOptions);
             return convertView;
