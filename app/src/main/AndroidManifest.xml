@@ -25,11 +25,14 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".GuideActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".pager.tabpager.NewsWebActivity"
+            android:label="@string/title_activity_news_web"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

@@ -66,7 +66,7 @@ int dimen default_title_indicator_footer_padding 0x7f050009
 int dimen default_title_indicator_text_size 0x7f05000a
 int dimen default_title_indicator_title_padding 0x7f05000b
 int dimen default_title_indicator_top_padding 0x7f05000c
-int drawable news_tab_item_bg_select 0x7f020000
+int drawable panel_picture_frame_bg_focus_blue 0x7f020000
 int drawable vpi__tab_indicator 0x7f020001
 int drawable vpi__tab_selected_focused_holo 0x7f020002
 int drawable vpi__tab_selected_holo 0x7f020003

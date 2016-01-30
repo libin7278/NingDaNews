@@ -313,7 +313,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static int default_title_indicator_top_padding=0x7f05000c;
     }
     public static final class drawable {
-        public static int news_tab_item_bg_select=0x7f020000;
+        public static int panel_picture_frame_bg_focus_blue=0x7f020000;
         public static int vpi__tab_indicator=0x7f020001;
         public static int vpi__tab_selected_focused_holo=0x7f020002;
         public static int vpi__tab_selected_holo=0x7f020003;

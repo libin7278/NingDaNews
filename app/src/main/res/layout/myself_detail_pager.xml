@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_myself_title" />
+
+        <LinearLayout
+            android:layout_width="211dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_title_myself"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/biz_pc_achievement_profile_default" />
+
+            <TextView
+                android:id="@+id/tv_title_myself_denglu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="12dp"
+                android:text="立即登录"
+                android:textColor="@drawable/tv_myself_denglu_secect_text"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="15dp">
+
+            <TextView
+                android:id="@+id/tv_myself_wodexiaoxi"
+                style="@style/myself_textview_style"
+                android:drawableLeft="@drawable/tv_wodexiaoxi_select"
+                android:src="@android:drawable/ic_btn_speak_now"
+                android:text="我的消息" />
+
+            <TextView
+                android:id="@+id/tv_myself_wodeshoucan"
+                style="@style/myself_textview_style"
+                android:drawableLeft="@drawable/tv_wodeshoucan_select"
+                android:src="@android:drawable/ic_btn_speak_now"
+                android:text="我的收藏" />
+
+            <TextView
+                android:id="@+id/tv_myself_qingchuhuancun"
+                style="@style/myself_textview_style"
+                android:drawableLeft="@drawable/tv_qingchuhuancun_select"
+                android:src="@android:drawable/ic_btn_speak_now"
+                android:text="清除缓存" />
+
+            <TextView
+                android:id="@+id/tv_myself_yijianfankui"
+                style="@style/myself_textview_style"
+                android:drawableLeft="@drawable/tv_yijianfankui_select"
+                android:src="@android:drawable/ic_btn_speak_now"
+                android:text="意见反馈" />
+
+            <TextView
+                android:id="@+id/tv_myself_guanyuwomen"
+                style="@style/myself_textview_style"
+                android:drawableLeft="@drawable/tv_uanyuwomen_select"
+                android:src="@android:drawable/ic_btn_speak_now"
+                android:text="关于我们" />
+
+            <TextView
+                android:id="@+id/tv_muself_yanfarenyuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:text="程序猿:李彬"
+                android:textColor="#ff0000"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="严正声明:本软件仅限于本人毕业设计,违反必究!"
+                android:textColor="#ff0000"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

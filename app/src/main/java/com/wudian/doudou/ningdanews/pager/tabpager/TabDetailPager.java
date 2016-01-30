@@ -1,6 +1,7 @@
 package com.wudian.doudou.ningdanews.pager.tabpager;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
@@ -145,6 +146,10 @@ public class TabDetailPager extends BasePager {
 
                     newsListAdapter.notifyDataSetChanged();//getCount() --> getView()
                 }
+                Intent intent = new Intent(mActivity, NewsWebActivity.class);
+                intent.putExtra("newsUrl",newsItem.getPost_link());
+                intent.putExtra("newsTitle",newsItem.getPost_title());
+                mActivity.startActivity(intent);
             }
         });
         return view;
