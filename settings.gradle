@@ -1,1 +1,1 @@
-include ':app', 'xutils_library', 'ViewPagerIndicator_library', 'refreshlayout_library'
+include ':app', 'xutils_library', 'ViewPagerIndicator_library'

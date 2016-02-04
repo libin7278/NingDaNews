@@ -1,6 +1,7 @@
 package com.wudian.doudou.ningdanews.pager;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 
 import com.wudian.doudou.ningdanews.R;
 import com.wudian.doudou.ningdanews.base.BasePager;
+import com.wudian.doudou.ningdanews.pager.myselfdetailpager.OptionRefectActivity;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -23,19 +25,19 @@ public class MyselfPager extends BasePager implements View.OnClickListener {
     @ViewInject(R.id.tv_myself_wodexiaoxi)
     private TextView tv_myself_wodexiaoxi;
 
-    @ViewInject(R.id.tv_muself_yanfarenyuan)
+    @ViewInject(R.id.tv_myself_wodeshoucan)
     private TextView tv_myself_wodeshoucan;
 
-    @ViewInject(R.id.tv_muself_yanfarenyuan)
+    @ViewInject(R.id.tv_myself_qingchuhuancun)
     private TextView tv_myself_qingchuhuancun;
 
-    @ViewInject(R.id.tv_muself_yanfarenyuan)
+    @ViewInject(R.id.tv_myself_yijianfankui)
     private TextView tv_myself_yijianfankui;
 
     @ViewInject(R.id.tv_muself_yanfarenyuan)
     private TextView tv_muself_yanfarenyuan;
 
-    @ViewInject(R.id.tv_muself_yanfarenyuan)
+    @ViewInject(R.id.tv_myself_guanyuwomen)
     private TextView tv_myself_guanyuwomen;
 
     public MyselfPager(Activity activity) {
@@ -55,7 +57,6 @@ public class MyselfPager extends BasePager implements View.OnClickListener {
         Toast.makeText(mActivity, "我页面的内容页被初始化了", Toast.LENGTH_SHORT).show();
 
         initSetOnClickListener();
-
         tv_muself_yanfarenyuan.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
     }
 
@@ -77,9 +78,11 @@ public class MyselfPager extends BasePager implements View.OnClickListener {
         } else if (v == tv_myself_wodeshoucan) {
             Toast.makeText(mActivity, "我的收藏", Toast.LENGTH_SHORT).show();
         } else if (v == tv_myself_qingchuhuancun) {
-            Toast.makeText(mActivity, "清除清除成功", Toast.LENGTH_LONG).show();
+            Toast.makeText(mActivity, "缓存清除成功", Toast.LENGTH_SHORT).show();
         } else if (v == tv_myself_yijianfankui) {
-            Toast.makeText(mActivity, "意见反馈", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(mActivity, OptionRefectActivity.class);
+            mActivity.startActivity(intent);
+            //Toast.makeText(mActivity, "意见反馈", Toast.LENGTH_SHORT).show();
         } else if (v == tv_myself_guanyuwomen) {
             Toast.makeText(mActivity, "关于我们", Toast.LENGTH_SHORT).show();
         }

@@ -1,5 +1,6 @@
 package com.wudian.doudou.ningdanews;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -21,8 +22,16 @@ import com.wudian.doudou.ningdanews.pager.MyselfPager;
 import com.wudian.doudou.ningdanews.pager.NewsPager;
 import com.wudian.doudou.ningdanews.pager.TopicPager;
 import com.wudian.doudou.ningdanews.pager.VideoPager;
+import com.wudian.doudou.ningdanews.pager.drawerlayoutpager.JiaoWuPingTaiActivity;
+import com.wudian.doudou.ningdanews.pager.drawerlayoutpager.JinPinKeChengActivity;
+import com.wudian.doudou.ningdanews.pager.drawerlayoutpager.NingDaShouYeActivity;
+import com.wudian.doudou.ningdanews.pager.drawerlayoutpager.WeiBoControlActivity;
+import com.wudian.doudou.ningdanews.pager.drawerlayoutpager.WuDianXueYuanTaiActivity;
 
 import java.util.ArrayList;
+
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -132,6 +141,7 @@ public class MainActivity extends AppCompatActivity
             setFragment();
         }
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -168,24 +178,61 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+
         int id = item.getItemId();
-
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Intent intent = new Intent(this, NingDaShouYeActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_gallery) {
-
+            Intent intent = new Intent(this, JiaoWuPingTaiActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
-
+            Intent intent = new Intent(this, WeiBoControlActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_manage) {
-
+            Intent intent = new Intent(this, WuDianXueYuanTaiActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            showAppShare();
+        } else if (id == R.id.nav_managlala) {
+            Intent intent = new Intent(this, JinPinKeChengActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    /**
+     * shardSDK
+     */
+    private void showAppShare() {
+        ShareSDK.initSDK(this);
+        OnekeyShare oks = new OnekeyShare();
+        //关闭sso授权
+        oks.disableSSOWhenAuthorize();
+
+        // 分享时Notification的图标和文字  2.5.9以后的版本不调用此方法
+        //oks.setNotification(R.drawable.ic_launcher, getString(R.string.app_name));
+        // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用
+        oks.setTitle("分享智慧宁大,生活更便利");
+        // titleUrl是标题的网络链接，仅在人人网和QQ空间使用
+        oks.setTitleUrl("http://sharesdk.cn");
+        // text是分享文本，所有平台都需要这个字段
+        oks.setText("点击分享智慧宁大,让你的生多更精彩!智慧宁大,不一样的新闻客户端,有了它,从此高端大气上档次!!!!还等什么,心动不如行动!!!!");
+        // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+        oks.setImageUrl("http://fabu.ycen.com.cn/upload/2016/01/0.203667320405909.jpg");//确保SDcard下面存在此张图片
+        // url仅在微信（包括好友和朋友圈）中使用
+        oks.setUrl("http://sharesdk.cn");
+        // comment是我对这条分享的评论，仅在人人网和QQ空间使用
+        oks.setComment("我是测试评论文本");
+        // site是分享此内容的网站名称，仅在QQ空间使用
+        oks.setSite(getString(R.string.app_name));
+        // siteUrl是分享此内容的网站地址，仅在QQ空间使用
+        oks.setSiteUrl("http://sharesdk.cn");
+
+// 启动分享GUI
+        oks.show(this);
     }
 }

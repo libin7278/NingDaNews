@@ -17,19 +17,19 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Non focused states -->
     <item android:state_focused="false" android:state_selected="false" android:state_pressed="false" android:drawable="@android:color/transparent" />
-    <item android:state_focused="false" android:state_selected="true"  android:state_pressed="false" android:drawable="@drawable/vpi__tab_selected_holo"/>
+    <item android:state_focused="false" android:state_selected="true"  android:state_pressed="false" android:drawable="@drawable/tab_title_select"/>
 
     <!-- Focused states -->
     <item android:state_focused="true" android:state_selected="false" android:state_pressed="false" android:drawable="@android:color/transparent" />
-    <item android:state_focused="true" android:state_selected="true"  android:state_pressed="false" android:drawable="@drawable/vpi__tab_selected_holo"/>
+    <item android:state_focused="true" android:state_selected="true"  android:state_pressed="false" android:drawable="@drawable/tab_title_select"/>
 
     <!-- Pressed -->
     <!--    Non focused states -->
     <item android:state_focused="false" android:state_selected="false" android:state_pressed="true" android:drawable="@android:color/transparent" />
-    <item android:state_focused="false" android:state_selected="true"  android:state_pressed="true" android:drawable="@drawable/vpi__tab_selected_holo"/>
+    <item android:state_focused="false" android:state_selected="true"  android:state_pressed="true" android:drawable="@drawable/tab_title_select"/>
 
     <!--    Focused states -->
     <item android:state_focused="true" android:state_selected="false" android:state_pressed="true" android:drawable="@android:color/transparent" />
-    <item android:state_focused="true" android:state_selected="true"  android:state_pressed="true" android:drawable="@drawable/vpi__tab_selected_holo" />
+    <item android:state_focused="true" android:state_selected="true"  android:state_pressed="true" android:drawable="@drawable/tab_title_select" />
 </selector>
 <!-- From: file:/Users/doudou/Documents/AndroidWorkspace/NingDaNews/ViewPagerIndicator_library/src/main/res/drawable/vpi__tab_indicator.xml -->

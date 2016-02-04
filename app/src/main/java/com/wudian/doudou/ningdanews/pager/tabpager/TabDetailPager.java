@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -80,6 +82,8 @@ public class TabDetailPager extends BasePager {
      * 新闻列表对应的数据
      */
     private List<NewDetailsBean.DataEntity> news;
+
+    private InternetHandler internetHandler;
 
     public TabDetailPager(Activity activity, String url) {
         super(activity);
@@ -182,6 +186,7 @@ public class TabDetailPager extends BasePager {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
+                Toast.makeText(mActivity,"联网请求失败",Toast.LENGTH_SHORT).show();
                 System.out.println("-----联网请求失败==" + volleyError);
             }
         }) {
@@ -246,6 +251,36 @@ public class TabDetailPager extends BasePager {
         //2.设置适配器,写item布局
         newsListAdapter = new NewsListAdapter();
         listview_tabdetail_pager.setAdapter(newsListAdapter);
+
+        if(internetHandler == null ){
+            internetHandler =new InternetHandler();
+        }else{
+            //移除消息和任务
+            internetHandler.removeCallbacksAndMessages(null);
+        }
+
+        //统一发消息和任务
+        internetHandler.postDelayed(new MyRunnable(),3000);
+    }
+
+    class InternetHandler extends Handler{
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            int item = (viewpager_tabdetail_pager.getCurrentItem()+1)%3;
+            viewpager_tabdetail_pager.setCurrentItem(item);
+
+            internetHandler.postDelayed(new MyRunnable(),3000);
+        }
+    }
+
+    class MyRunnable implements Runnable{
+
+        @Override
+        public void run() {
+            internetHandler.sendEmptyMessage(0);
+        }
     }
 
     class NewsListAdapter extends BaseAdapter {
@@ -353,6 +388,30 @@ public class TabDetailPager extends BasePager {
 
             //联网请求图片-xUtils
             x.image().bind(imageView, news.get(position).getItem_small_pic(), imageOptions);
+
+            imageView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    switch (event.getAction()){
+                        case MotionEvent.ACTION_DOWN:
+                            if(internetHandler != null){
+                                internetHandler.removeCallbacksAndMessages(null);
+                            }
+                            break;
+                        case MotionEvent.ACTION_UP:
+                            if(internetHandler != null){
+                                internetHandler.postDelayed(new MyRunnable(),3000);
+                            }
+                            break;
+                        case MotionEvent.ACTION_CANCEL://事件取消,down 抢占了up 所以要用cancel
+                            if(internetHandler != null){
+                                internetHandler.postDelayed(new MyRunnable(),3000);
+                            }
+                            break;
+                    }
+                    return true;
+                }
+            });
 
             return imageView;
         }
