@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.wudian.doudou.ningdanews.MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            android:clickable="false"
+            android:focusable="false"
+            android:longClickable="false" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="50dp"
+        >
+
+        <FrameLayout
+            android:id="@+id/main_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.79"
+            android:background="#f0f0f0"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rg_content_fragment"
+            android:background="@drawable/rg_group_bg"
+            android:padding="5dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_news"
+                style="@style/bottom_radiobutton_style"
+                android:drawableTop="@drawable/rb_home_selector"
+                android:text="新闻" />
+
+            <RadioButton
+                android:id="@+id/rb_topic"
+                style="@style/bottom_radiobutton_style"
+                android:drawableTop="@drawable/rb_newscenter_seletor"
+                android:text="话题" />
+
+            <RadioButton
+                android:id="@+id/rb_video"
+                style="@style/bottom_radiobutton_style"
+                android:drawableTop="@drawable/rb_smartservice_selector"
+                android:text="视听" />
+
+            <RadioButton
+                android:id="@+id/rb_myself"
+                style="@style/bottom_radiobutton_style"
+                android:drawableTop="@drawable/rb_govaffair_selector"
+                android:text="我" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <!--<include layout="@layout/content_main"/>-->
+
+    <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/fab"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom|end"-->
+        <!--android:layout_margin="@dimen/fab_margin"-->
+        <!--android:src="@android:drawable/ic_dialog_email" />-->
+
+</android.support.design.widget.CoordinatorLayout>

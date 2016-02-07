@@ -82,7 +82,11 @@
         <activity android:name=".pager.drawerlayoutpager.NingDaShouYeActivity" />
         <activity android:name=".pager.drawerlayoutpager.JiaoWuPingTaiActivity" />
         <activity android:name=".pager.drawerlayoutpager.JinPinKeChengActivity" />
-        <activity android:name=".pager.drawerlayoutpager.weibodetailpager.YCFBAcyivity"></activity>
+        <activity android:name=".pager.drawerlayoutpager.weibodetailpager.YCFBAcyivity" />
+        <activity
+            android:name=".pager.videodetailpager.VideoDetailActivity"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity android:name=".pager.videodetailpager.ReadWebActivity"></activity>
     </application>
 
 </manifest>

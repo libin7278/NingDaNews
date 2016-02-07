@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ListView
+            android:id="@+id/lsitview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="#00000000"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:listSelector="#00000000" >
+        </ListView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+    
+          <LinearLayout
+            android:id="@+id/ll_pb_progressbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" 
+            android:gravity="center"
+            android:background="@android:color/white">
+       
+
+        <com.wudian.doudou.ningdanews.view.MetableDebugView
+            android:id="@+id/pb_progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="visible" />
+         </LinearLayout>
+</FrameLayout>
+</LinearLayout>

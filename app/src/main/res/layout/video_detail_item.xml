@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="标题"
+        android:id="@+id/iv_read_title"
+        android:textColor="#000000"
+        android:textSize="26dp"
+        android:lines="2"
+        android:gravity="center"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:padding="20dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="70dp"
+            android:id="@+id/iv_read_item"
+            android:src="@drawable/read_item_bg"/>
+
+        <TextView
+            android:lines="3"
+            android:padding="20dp"
+            android:id="@+id/tv_jianjie_read"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="简介"
+            android:textColor="#3f3f3f"
+            android:textSize="13sp"
+            android:layout_height="70dp"
+            android:gravity="center"/>
+    </LinearLayout>
+
+</LinearLayout>

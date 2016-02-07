@@ -2,6 +2,8 @@ package com.wudian.doudou.ningdanews.pager.drawerlayoutpager;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,9 @@ public class WeiBoControlActivity extends Activity implements AdapterView.OnItem
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wei_bo_control);
         gv_weibo = (GridView) findViewById(R.id.gv_weibo);
+
+        // 取消GridView/ListView item被点击时的效果
+        gv_weibo.setSelector(new ColorDrawable(Color.TRANSPARENT));
 
         gv_weibo.setOnItemClickListener(this);
 

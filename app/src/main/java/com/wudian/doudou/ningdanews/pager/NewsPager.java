@@ -25,19 +25,6 @@ import java.util.ArrayList;
 public class NewsPager extends BasePager {
     private static final String[] TABTITLE = new String[]{"本土", "县区","直播","爱尚","视频","时事", "图集"};
 
-    /**
-     * 页签页面页数
-     */
-    private int pagerNumber;
-
-    public void setPagerNumber(int pagerNumber) {
-        this.pagerNumber = pagerNumber;
-    }
-
-    public int getPagerNumber() {
-        return pagerNumber;
-    }
-
     public NewsPager(Activity activity) {
         super(activity);
     }
@@ -65,7 +52,6 @@ public class NewsPager extends BasePager {
     @Override
     public void initData() {
         super.initData();
-        System.out.println("新闻菜单详情页面数据被初始化了...");
 
         newsPagers = new ArrayList<BasePager>();
 

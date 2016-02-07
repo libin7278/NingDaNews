@@ -54,7 +54,6 @@ public class MyselfPager extends BasePager implements View.OnClickListener {
     @Override
     public void initData() {
         Log.e("TAG", "我页面的内容页被初始化了");
-        Toast.makeText(mActivity, "我页面的内容页被初始化了", Toast.LENGTH_SHORT).show();
 
         initSetOnClickListener();
         tv_muself_yanfarenyuan.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ImageView
+        android:id="@+id/iv_read_icon"
+        android:layout_width="match_parent"
+        android:layout_height="101dp"
+        android:layout_margin="1dp" />
+
+    <TextView
+        android:id="@+id/tv_read_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/iv_read_icon"
+        android:layout_alignLeft="@id/iv_read_icon"
+        android:layout_marginRight="1dp"
+        android:background="@drawable/ic_read_classify_masking"
+        android:gravity="bottom"
+        android:paddingBottom="4dp"
+        android:paddingLeft="1dp"
+        android:text="早安故事"
+        android:textColor="@android:color/white"
+        android:textSize="13sp" />
+
+
+</RelativeLayout>

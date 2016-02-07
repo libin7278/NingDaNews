@@ -68,10 +68,13 @@ public class TabDetailPager extends BasePager {
     @ViewInject(R.id.swipe_container)
     private SwipeRefreshLayout swipe_container;
 
+    @ViewInject(R.id.ll_pb_progressbar)
+    private LinearLayout ll_pb_progressbar;
+
     private ImageOptions imageOptions;
 
     //listview适配器
-    private  NewsListAdapter newsListAdapter;
+    private NewsListAdapter newsListAdapter;
 
     /**
      * 红点上一次高亮显示的位置
@@ -91,7 +94,7 @@ public class TabDetailPager extends BasePager {
         this.url = url;
 
         imageOptions = new ImageOptions.Builder()
-                .setSize(DensityUtil.dip2px(240), DensityUtil.dip2px(240))
+                .setSize(DensityUtil.dip2px(240), DensityUtil.dip2px(120))
                 .setRadius(DensityUtil.dip2px(5))
                 // 如果ImageView的大小不是定义为wrap_content, 不要crop.
                 .setCrop(false)
@@ -115,6 +118,29 @@ public class TabDetailPager extends BasePager {
 
         listview_tabdetail_pager.addHeaderView(topView);
 
+        //点击某一天监听item
+        listview_tabdetail_pager.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int realPosition = position - 1;
+                NewDetailsBean.DataEntity newsItem = news.get(realPosition);
+                Log.d("TAG", "newsItem.getID()" + newsItem.getID() + "newsItem.getPost_title()" + newsItem.getPost_title());
+                String saveIds = CacheUtils.getString(mActivity, READ_ARRAY_ID);
+                //首先读取ID是否被保存,如果没被保存,才去保存,并发送消息;
+                if (!saveIds.contains(newsItem.getID() + "")) {
+                    //保存
+                    String values = saveIds + newsItem.getID() + ",";
+                    CacheUtils.putString(mActivity, READ_ARRAY_ID, values);
+
+                    newsListAdapter.notifyDataSetChanged();//getCount() --> getView()
+                }
+                Intent intent = new Intent(mActivity, NewsWebActivity.class);
+                intent.putExtra("newsUrl", newsItem.getPost_link());
+                intent.putExtra("newsTitle", newsItem.getPost_title());
+                mActivity.startActivity(intent);
+            }
+        });
+
         swipe_container.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
         swipe_container.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -131,29 +157,6 @@ public class TabDetailPager extends BasePager {
                         Toast.makeText(mActivity, "亲...刷新成功 >.< 喽!!!", Toast.LENGTH_SHORT).show();
                     }
                 }, 3000);
-            }
-        });
-
-        //点击某一天监听item
-        listview_tabdetail_pager.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                int realPosition = position-1;
-                NewDetailsBean.DataEntity newsItem = news.get(realPosition);
-                Log.d("TAG","newsItem.getID()"+newsItem.getID()+"newsItem.getPost_title()"+newsItem.getPost_title());
-                String saveIds = CacheUtils.getString(mActivity, READ_ARRAY_ID);
-                //首先读取ID是否被保存,如果没被保存,才去保存,并发送消息;
-                if(!saveIds.contains(newsItem.getID()+"")){
-                    //保存
-                    String values = saveIds+newsItem.getID()+",";
-                    CacheUtils.putString(mActivity,READ_ARRAY_ID,values);
-
-                    newsListAdapter.notifyDataSetChanged();//getCount() --> getView()
-                }
-                Intent intent = new Intent(mActivity, NewsWebActivity.class);
-                intent.putExtra("newsUrl",newsItem.getPost_link());
-                intent.putExtra("newsTitle",newsItem.getPost_title());
-                mActivity.startActivity(intent);
             }
         });
         return view;
@@ -186,7 +189,7 @@ public class TabDetailPager extends BasePager {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(mActivity,"联网请求失败",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mActivity, "联网请求失败", Toast.LENGTH_SHORT).show();
                 System.out.println("-----联网请求失败==" + volleyError);
             }
         }) {
@@ -237,6 +240,7 @@ public class TabDetailPager extends BasePager {
 
             //把点击添加到线性布局里面去
             ll_poing_goup.addView(point);
+
         }
 
         viewpager_tabdetail_pager.setOnPageChangeListener(new TopnewseOnPageChangeListener());
@@ -252,30 +256,38 @@ public class TabDetailPager extends BasePager {
         newsListAdapter = new NewsListAdapter();
         listview_tabdetail_pager.setAdapter(newsListAdapter);
 
-        if(internetHandler == null ){
-            internetHandler =new InternetHandler();
-        }else{
+        if (internetHandler == null) {
+            internetHandler = new InternetHandler();
+        } else {
             //移除消息和任务
             internetHandler.removeCallbacksAndMessages(null);
         }
 
         //统一发消息和任务
-        internetHandler.postDelayed(new MyRunnable(),3000);
+        internetHandler.postDelayed(new MyRunnable(), 3000);
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ll_pb_progressbar.setVisibility(View.INVISIBLE);
+            }
+        }, 1000);
     }
 
-    class InternetHandler extends Handler{
+    class InternetHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
 
-            int item = (viewpager_tabdetail_pager.getCurrentItem()+1)%3;
+            int item = (viewpager_tabdetail_pager.getCurrentItem() + 1) % 3;
             viewpager_tabdetail_pager.setCurrentItem(item);
 
-            internetHandler.postDelayed(new MyRunnable(),3000);
+            internetHandler.postDelayed(new MyRunnable(), 3000);
         }
     }
 
-    class MyRunnable implements Runnable{
+    class MyRunnable implements Runnable {
 
         @Override
         public void run() {
@@ -320,10 +332,10 @@ public class TabDetailPager extends BasePager {
             viewHolder.tv_time_tabdetal.setText(newsItem.getPost_date());
 
             String saveIds = CacheUtils.getString(mActivity, READ_ARRAY_ID);
-            if(saveIds.contains(newsItem.getID()+"")){
+            if (saveIds.contains(newsItem.getID() + "")) {
                 //灰色
                 viewHolder.tv_title_tabdetal.setTextColor(Color.GRAY);
-            }else{
+            } else {
                 //黑色
                 viewHolder.tv_title_tabdetal.setTextColor(Color.BLACK);
             }
@@ -392,20 +404,20 @@ public class TabDetailPager extends BasePager {
             imageView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
-                    switch (event.getAction()){
+                    switch (event.getAction()) {
                         case MotionEvent.ACTION_DOWN:
-                            if(internetHandler != null){
+                            if (internetHandler != null) {
                                 internetHandler.removeCallbacksAndMessages(null);
                             }
                             break;
                         case MotionEvent.ACTION_UP:
-                            if(internetHandler != null){
-                                internetHandler.postDelayed(new MyRunnable(),3000);
+                            if (internetHandler != null) {
+                                internetHandler.postDelayed(new MyRunnable(), 3000);
                             }
                             break;
                         case MotionEvent.ACTION_CANCEL://事件取消,down 抢占了up 所以要用cancel
-                            if(internetHandler != null){
-                                internetHandler.postDelayed(new MyRunnable(),3000);
+                            if (internetHandler != null) {
+                                internetHandler.postDelayed(new MyRunnable(), 3000);
                             }
                             break;
                     }
