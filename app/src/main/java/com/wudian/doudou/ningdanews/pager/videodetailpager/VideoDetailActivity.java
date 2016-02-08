@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,17 +36,23 @@ import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class VideoDetailActivity extends Activity {
-    private static final String url = "http://api2.pianke.me/read/latest";
+    private static final String url = "http://api2.pianke.me/read/columns_detail";
 
     private ImageOptions imageOptions;
+
+    private Readtendetailpager readtendetailpager;
+
+    private List<Readtendetailpager.ReadDetailList> list;
 
     public VideoDetailActivity() {
         imageOptions = new ImageOptions.Builder()
                 .setSize(DensityUtil.dip2px(80), DensityUtil.dip2px(40))
-                .setRadius(DensityUtil.dip2px(5))
+                .setRadius(DensityUtil.dip2px(10))
                 // 如果ImageView的大小不是定义为wrap_content, 不要crop.
                 .setCrop(false)
                 // 加载中或错误图片的ScaleType
@@ -64,12 +71,10 @@ public class VideoDetailActivity extends Activity {
 
     private ImageView iv_video_title;
 
+    private String typetitle;
+
     //listview适配器
     private ReadListAdapter readListAdapter;
-
-    //grilView数据
-    Readtendetailpager.DataEntity.ListEntity listEntity;
-    List<Readtendetailpager.DataEntity.ListEntity> list;
 
     //传过来的title
     private String ftitle;
@@ -82,7 +87,7 @@ public class VideoDetailActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_detail);
 
-        fposition =getIntent().getIntExtra("position",0);
+        fposition = getIntent().getIntExtra("position", 0);
         ftitle = getIntent().getStringExtra("title");
 
         sw_refresh_read = (SwipeRefreshLayout) findViewById(R.id.sw_refresh_read);
@@ -102,7 +107,7 @@ public class VideoDetailActivity extends Activity {
                     public void run() {
                         sw_refresh_read.setRefreshing(false);
                         getDataFromNet();
-                      readListAdapter.notifyDataSetChanged();
+                        readListAdapter.notifyDataSetChanged();
 
                         Toast.makeText(getApplication(), "亲...刷新成功 >.< 喽!!!", Toast.LENGTH_SHORT).show();
                     }
@@ -134,7 +139,7 @@ public class VideoDetailActivity extends Activity {
 
     private void getDataFromNet() {
         RequestQueue queue = Volley.newRequestQueue(this);
-        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String json) {
                 System.out.println("-----------联网请求成功==" + json);
@@ -158,6 +163,49 @@ public class VideoDetailActivity extends Activity {
                 }
                 return super.parseNetworkResponse(response);
             }
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> map = new HashMap<String, String>();
+                map.put("start", "0");
+                map.put("limit", "10");
+                map.put("client", "2");
+                map.put("sort", "addtime");
+                switch (fposition) {
+                    case 0:
+                        map.put("typeid", "1");
+                        break;
+                    case 1:
+                        map.put("typeid", "27");
+                        break;
+                    case 2:
+                        map.put("typeid", "10");
+                        break;
+                    case 3:
+                        map.put("typeid", "14");
+                        break;
+                    case 4:
+                        map.put("typeid", "6");
+                        break;
+                    case 5:
+                        map.put("typeid", "18");
+                        break;
+                    case 6:
+                        map.put("typeid", "12");
+                        break;
+                    case 7:
+                        map.put("typeid", "11");
+                        break;
+                    case 8:
+                        map.put("typeid", "7");
+                        break;
+
+                    default:
+                        break;
+                }
+
+                return map;
+            }
         };
 
         queue.add(request);
@@ -165,11 +213,9 @@ public class VideoDetailActivity extends Activity {
 
     private void processData(String json) {
         Gson gson = new Gson();
-        Readtendetailpager readtendetailpager = gson.fromJson(json, Readtendetailpager.class);
+        readtendetailpager = gson.fromJson(json, Readtendetailpager.class);
 
-        listEntity = readtendetailpager.getData().getList().get(fposition);
-
-        list = readtendetailpager.getData().getList();
+        list = readtendetailpager.data.list;
 
         readListAdapter = new ReadListAdapter();
 
@@ -178,10 +224,12 @@ public class VideoDetailActivity extends Activity {
         lv_video_content.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplication(),ReadWebActivity.class);
+                Intent intent = new Intent(getApplication(), ReadWebDetailActivity.class);
 
-                //传递内容id
-                intent.putExtra("content",listEntity.getContentid());
+                intent.putExtra("contentids", list.get(position).id);
+                intent.putExtra("typetitle", list.get(position).title);
+                intent.putExtra("positions", fposition);
+
                 startActivity(intent);
             }
         });
@@ -220,10 +268,11 @@ public class VideoDetailActivity extends Activity {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
 
-            viewHolder.tv_jianjie_read.setText(listEntity.getShortcontent());
-            viewHolder.iv_read_title.setText(listEntity.getTitle());
+            Readtendetailpager.ReadDetailList readDetailLists = list.get(position);
+            viewHolder.tv_jianjie_read.setText(readDetailLists.content);
+            viewHolder.iv_read_title.setText(readDetailLists.title);
 
-            x.image().bind(viewHolder.iv_read_item, listEntity.getFirstimage(), imageOptions);
+            x.image().bind(viewHolder.iv_read_item, readDetailLists.coverimg, imageOptions);
             return convertView;
         }
     }

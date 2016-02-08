@@ -86,7 +86,8 @@
         <activity
             android:name=".pager.videodetailpager.VideoDetailActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar" />
-        <activity android:name=".pager.videodetailpager.ReadWebActivity"></activity>
+        <activity android:name=".pager.videodetailpager.ReadWebDetailActivity"
+            android:theme="@android:style/Theme.Light.NoTitleBar"/>
     </application>
 
 </manifest>

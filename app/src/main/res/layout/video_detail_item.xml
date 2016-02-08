@@ -4,13 +4,14 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="标题"
         android:id="@+id/iv_read_title"
         android:textColor="#000000"
-        android:textSize="26dp"
-        android:lines="2"
+        android:textSize="22dp"
+        android:lines="1"
         android:gravity="center"
         />
     <LinearLayout
@@ -19,7 +20,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:padding="20dp"
+            android:padding="10dp"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="70dp"
@@ -28,13 +29,13 @@
 
         <TextView
             android:lines="3"
-            android:padding="20dp"
+            android:padding="10dp"
             android:id="@+id/tv_jianjie_read"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="简介"
             android:textColor="#3f3f3f"
-            android:textSize="13sp"
+            android:textSize="14sp"
             android:layout_height="70dp"
             android:gravity="center"/>
     </LinearLayout>

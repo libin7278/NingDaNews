@@ -77,7 +77,7 @@ public class VideoPager extends BasePager {
 
         imageOptions = new ImageOptions.Builder()
                 .setSize(DensityUtil.dip2px(240), DensityUtil.dip2px(240))
-                .setRadius(DensityUtil.dip2px(5))
+                .setRadius(DensityUtil.dip2px(10))
                 // 如果ImageView的大小不是定义为wrap_content, 不要crop.
                 .setCrop(false)
                 // 加载中或错误图片的ScaleType
