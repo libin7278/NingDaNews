@@ -1,8 +1,10 @@
 package com.wudian.doudou.ningdanews.pager;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -10,6 +12,8 @@ import android.widget.Toast;
 
 import com.wudian.doudou.ningdanews.R;
 import com.wudian.doudou.ningdanews.base.BasePager;
+import com.wudian.doudou.ningdanews.pager.myselfdetailpager.AboutUsActivity;
+import com.wudian.doudou.ningdanews.pager.myselfdetailpager.LoginLlActivity;
 import com.wudian.doudou.ningdanews.pager.myselfdetailpager.OptionRefectActivity;
 
 import org.xutils.view.annotation.ViewInject;
@@ -71,19 +75,32 @@ public class MyselfPager extends BasePager implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == tv_title_myself_denglu) {
-            Toast.makeText(mActivity, "登陆", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(mActivity, LoginLlActivity.class);
+            mActivity.startActivity(intent);
         } else if (v == tv_myself_wodexiaoxi) {
-            Toast.makeText(mActivity, "我的消息", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mActivity, "暂无消息,哦哦...", Toast.LENGTH_SHORT).show();
         } else if (v == tv_myself_wodeshoucan) {
-            Toast.makeText(mActivity, "我的收藏", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mActivity, "暂无收藏,哦哦...", Toast.LENGTH_SHORT).show();
         } else if (v == tv_myself_qingchuhuancun) {
-            Toast.makeText(mActivity, "缓存清除成功", Toast.LENGTH_SHORT).show();
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    new AlertDialog.Builder(mActivity)
+                            .setTitle("清除缓存")
+                            .setMessage("亲,恭喜成功缓存清除...")
+                            .setPositiveButton("确定",null)
+                            .show();
+                }
+            },1500);
+            Toast.makeText(mActivity, "清理中....请稍后...", Toast.LENGTH_SHORT).show();
         } else if (v == tv_myself_yijianfankui) {
             Intent intent = new Intent(mActivity, OptionRefectActivity.class);
             mActivity.startActivity(intent);
             //Toast.makeText(mActivity, "意见反馈", Toast.LENGTH_SHORT).show();
         } else if (v == tv_myself_guanyuwomen) {
-            Toast.makeText(mActivity, "关于我们", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(mActivity, AboutUsActivity.class);
+            mActivity.startActivity(intent);
         }
     }
 }

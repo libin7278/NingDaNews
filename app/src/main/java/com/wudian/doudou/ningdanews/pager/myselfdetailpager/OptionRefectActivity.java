@@ -38,8 +38,8 @@ public class OptionRefectActivity extends Activity implements View.OnClickListen
         if (v == iv_myself_banck) {
             finish();
         } else if (v == btn_muself_tijiao) {
-            if (ed_myself_ora_title.getText().toString().equals("") && ed_myself_ora_content.getText().toString().equals("")) {
-                Toast.makeText(this, "提交失败,内容不能为空", Toast.LENGTH_SHORT).show();
+            if (ed_myself_ora_title.getText().toString().equals("") || ed_myself_ora_content.getText().toString().equals("")) {
+                Toast.makeText(this, "提交失败,联系方式/内容不能为空", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "提交成功", Toast.LENGTH_SHORT).show();
                 finish();

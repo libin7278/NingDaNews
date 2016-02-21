@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_new_menu_detatil_paper"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/ll_new_menu_detatil_paper">
+    android:orientation="vertical">
 
     <com.viewpagerindicator.TabPageIndicator
-        android:theme="@style/Theme.PageIndicatorDefaults"
         android:id="@+id/tab_page_indicator"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.PageIndicatorDefaults" />
 
     <android.support.v4.view.ViewPager
-    android:id="@+id/viewpager_news_menu_detail"
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1"></android.support.v4.view.ViewPager>
+        android:id="@+id/viewpager_news_menu_detail"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
 </LinearLayout>

@@ -254,10 +254,6 @@ public class ReadWebDetailActivity extends Activity {
                 .getUname();
         tv_write_author.setText(write_author);
 
-        String imgUrl = articleInfoBean.getData().getUserinfo().getIcon();
-        Picasso.with(this).load(imgUrl).transform(new CircleTransform())
-                .into(iv_write_author);
-
         String write_content = articleInfoBean.getData().getUserinfo()
                 .getDesc();
 

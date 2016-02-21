@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#ee000000">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/iv_title_tuihou_us"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/ic_arrow_back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="个人简介"
+            android:textColor="#ffffff"
+            android:textSize="25sp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+    <ScrollView xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        tools:context="com.wudian.doudou.ningdanews.pager.myselfdetailpager.AboutUsActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="530dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:src="@drawable/myself" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="      本人毕业于宁夏大学，在校期间曾担任学院第十二届宣传部部长,班级团支部书记。在校期间多次参加志愿者活动并多次获得优秀志愿者荣誉称号，学业之余经常参加兼职工作，能够吃苦耐劳，有着顽强的意志。在学习方面，有着很强的自学能力，善于总结、够通交流，多次获得校级以及国家励志奖学金，并且积极参加各类比赛并取得了优异的成绩。在担任团委副书记期间，曾组织、策划大型文艺晚会，并取得了不错的效果。本人非常痴迷于Android软件研发，在校期间自己研发过多个App，如手机卫士，安卓万能解码播放器，新闻客户端，订餐系统等等，经常查阅GitHub和CSDN等，有着良好的代码风格，严谨的编程思想，本人会奉献所有激情为公司创造价值。"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="   "
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="      兴趣爱好：Android软件研发，足球，吉他。"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="   "
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="      所获奖励:2013--2014  国家励志奖学金；
+2012--2015  一次校级一等奖学金，两次校级二等奖学金；
+2012--2015  两次校级优秀学生干部，一次宁夏大学“三号学生”
+2013年度优秀共青团员，优秀青年志愿者，团学骨干培训班优秀学员；
+2014年度优秀学生团干部，优秀学生安全宣传员；
+第二届“大唐杯”全国大学生通信技术大赛国赛本科组一等奖；
+第二届“大唐杯”全国大学生通信技术大赛西北赛区本科组一等奖；
+2014年“创青春”挑战杯全区大学生创业大赛一等奖；
+2014年WCA世界电子竞技大赛优秀志愿者；
+2012年宁夏大学“联通杯第一届纸飞机大赛三等奖”；
+普通话水平测试 二级甲等
+"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
