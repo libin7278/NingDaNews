@@ -32,4 +32,3 @@
     <item android:state_focused="true" android:state_selected="false" android:state_pressed="true" android:color="#3A5FCD" />
     <item android:state_focused="true" android:state_selected="true"  android:state_pressed="true" android:color="#ffffff" />
 </selector>
-<!-- From: file:/Users/doudou/Documents/AndroidWorkspace/NingDaNews/ViewPagerIndicator_library/src/main/res/drawable/vpi__tab_textcolor_indicator.xml -->

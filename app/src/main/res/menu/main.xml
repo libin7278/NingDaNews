@@ -2,7 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+        android:title="刷新"
+        android:orderInCategory="100"
+        android:icon="@drawable/dynamic_refresh_normal"
+        app:showAsAction="never" />
+    <item android:id="@+id/action"
+        android:title="天气"
+        android:orderInCategory="100"
+        android:icon="@drawable/biz_plugin_weather_dabaoyu"
+        app:showAsAction="never" />
+    <item android:id="@+id/action2"
+        android:title="设置"
+        android:icon="@drawable/default_round_head"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item android:id="@+id/action1"
+        android:title="分享"
+        android:icon="@drawable/biz_audio_play_share"
         android:orderInCategory="100"
         app:showAsAction="never" />
 </menu>

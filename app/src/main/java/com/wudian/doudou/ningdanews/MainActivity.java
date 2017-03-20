@@ -10,12 +10,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.wudian.doudou.ningdanews.base.BasePager;
 import com.wudian.doudou.ningdanews.pager.MyselfPager;
@@ -234,5 +236,29 @@ public class MainActivity extends AppCompatActivity
 
 // 启动分享GUI
         oks.show(this);
+    }
+
+    private long waitTime = 2000;
+    private long touchTime = 0;
+
+    /**
+     * 双击退出
+     * @param keyCode
+     * @param event
+     * @return
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK){
+            long currentTime = System.currentTimeMillis();
+            if((currentTime-touchTime) >= waitTime) {
+                Toast.makeText(this,"再次点击退出",Toast.LENGTH_SHORT).show();
+                touchTime = currentTime;
+            }else{
+                finish();
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
